@@ -11,6 +11,15 @@
       <p class="card-title">Place : {{ $students->place->name }}</p>
       <br>
       </p>
+      <br>
+      <p class="card-title">Category :
+        @foreach($students->category as $category)
+        {{$category->name}}
+        @endforeach
+      </p>
+      <!-- <p class="card-title">Category : {{ $students->$cats->name }}</p> -->
+      <br>
+      </p>
     </div>
     </hr>
   </div>

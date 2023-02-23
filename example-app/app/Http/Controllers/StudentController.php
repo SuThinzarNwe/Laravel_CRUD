@@ -16,9 +16,7 @@ class StudentController extends Controller
    */
   public function index()
   {
-    $students = Student::latest()->search()->with(['place', 'category'])->paginate(10);
-    //$students = Student::search()->with(['place', 'category'])->paginate(10);
-    //$students = Student::latest()->search()->paginate(10);
+    $students = Student::latest()->search()->with(['place', 'category'])->paginate(10)->get();
     return view('students.index', compact('students'));
   }
 
@@ -43,8 +41,8 @@ class StudentController extends Controller
   public function store(StoreStudent $request)
   {
     $students = $request->all();
-
     $cats = $request->cat;
+    dd($students);
     if ($request->hasFile('image')) {
       $imageName = time() . '.' . $request->image->extension();
       $request->image->move(storage_path('app/public/images'), $imageName);
@@ -98,6 +96,7 @@ class StudentController extends Controller
   public function update(StoreStudent $request, $id)
   {
     $student = Student::find($id);
+    $cats = $student->cat;
     if ($request->hasFile('image')) {
       unlink(storage_path('app/public/images/') . $student->image);
       $imageName = time() . '.' . $request->image->extension();
@@ -112,6 +111,7 @@ class StudentController extends Controller
       'place_id' => $request->place_id,
     ]);
 
+    $student->category()->sync($cats);
     return redirect('student')->with('success', 'Student Updated!');
   }
 
@@ -125,6 +125,7 @@ class StudentController extends Controller
   {
     $student = Student::find($id);
     unlink(storage_path('app/public/images/') . $student->image);
+    $student->category()->detach();
     $student->delete();
 
     return redirect('student')->with('success', 'Student deleted!');

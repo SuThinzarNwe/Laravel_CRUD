@@ -51,19 +51,19 @@
 
         <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
           <div class="form-group">
-            <!-- <select name="" multiple="multiple" class="block w-full mt-1 rounded-md form-control" required>
+            <select name="" multiple="multiple" class="selectpicker block w-full mt-1 rounded-md form-control" multiple data-live-search="true">
               <option value="">Select Category</option>
               @foreach ($categories as $category)
               <option value="{{$category->name}}">{{$category->name}}</option>
               @endforeach
-            </select> -->
-            <label><strong>Category :</strong></label><br>
+            </select>
+            <!-- <label><strong>Category :</strong></label><br>
             @foreach ($categories as $category)
             <label><input type="checkbox" name="cat[]" value="{{$category->name}}"> {{$category->name}}</label>
             @endforeach
             @error('category_id')
             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-            @enderror
+            @enderror -->
           </div>
         </div>
         <br><br>

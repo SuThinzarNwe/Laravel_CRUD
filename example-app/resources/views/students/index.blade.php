@@ -50,9 +50,14 @@
                   <td>
                     {{$student->place->name ?? ' '}}
                   </td>
+                  <!-- <td class="w-25">
+                    @foreach($student->category as $category)
+                    {{ $category->name }}
+                    @endforeach
+                  </td> -->
                   <td class="w-25">
                     @foreach($student->category as $category)
-                    {{ $category->category_id }}
+                    {{$category->name}}
                     @endforeach
                   </td>
                   <td>
